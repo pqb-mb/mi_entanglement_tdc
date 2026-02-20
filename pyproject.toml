@@ -1,0 +1,55 @@
+[project]
+name = "mi-entanglement-tdc"
+version = "0.1.0"
+description = "Mutual Information-guided quantum feature augmentation for TDC ADMET benchmarks"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    # Machine learning
+    "scikit-learn>=1.2,<1.6",
+    "numpy>=1.24,<2.0",
+    "pandas>=2.0,<2.3",
+    "catboost>=1.2,<1.3",
+    # Quantum computing
+    "pennylane>=0.38",
+    "pennylane-lightning>=0.38",
+    "autoray>=0.6",
+    # Chemistry
+    "rdkit",
+    # Utilities
+    "tqdm>=4.65",
+    "psutil>=5.9",
+    "joblib>=1.3",
+    # PyTDC runtime deps (installed --no-deps to avoid tiledbsoma)
+    "fuzzywuzzy",
+    "requests",
+    "setuptools<71",
+    "huggingface_hub",
+    "pip",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "pennylane-lightning-gpu>=0.38",
+]
+dev = [
+    "pytest>=7.4,<9.0",
+    "pytest-cov>=4.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = ["gpu: marks tests as requiring GPU (deselect with '-m \"not gpu\"')"]
+
+[tool.uv]
+# Use NVIDIA's index for pre-built GPU wheels
+extra-index-url = ["https://pypi.nvidia.com"]
