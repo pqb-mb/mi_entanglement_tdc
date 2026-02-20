@@ -2,6 +2,27 @@
 
 Mutual Information-guided quantum-inspired feature engineering for the TDC ADMET benchmark suite.
 
+## TL;DR — CYP3A4_Substrate_CarbonMangels
+
+```bash
+# 1. Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh && source ~/.bashrc
+
+# 2. Install dependencies
+make sync           # CPU only
+# OR
+make sync-gpu       # GPU support (faster, requires NVIDIA driver)
+
+# 3. Run the benchmark (CYP3A4_Substrate_CarbonMangels is the default)
+make run            # CPU
+# OR
+make run LOCAL_DEVICE=lightning.gpu   # GPU (recommended)
+```
+
+Results are written to `results/results_CYP3A4_Substrate_CarbonMangels.json`.
+
+---
+
 > **Note**: This implementation uses classical simulation of quantum circuits via [PennyLane](https://pennylane.ai/). The algorithm is designed for future deployment on quantum hardware, but currently runs on classical CPUs/GPUs.
 
 ## Method
