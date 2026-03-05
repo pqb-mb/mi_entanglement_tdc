@@ -5,6 +5,29 @@ description = "Mutual Information-guided quantum feature augmentation for TDC AD
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10,<3.12"
+keywords = [
+    "quantum-computing",
+    "quantum-machine-learning",
+    "drug-discovery",
+    "ADMET",
+    "molecular-property-prediction",
+    "mutual-information",
+    "feature-engineering",
+    "pennylane",
+    "cheminformatics",
+    "TDC-benchmark",
+]
+authors = [
+    { name = "B. Maurice Benson", email = "mbenson@polarisqb.com" },
+    { name = "Kendall Byler" },
+    { name = "Anna Petroff" },
+    { name = "Shahar Keinan" },
+    { name = "William J. Shipman" },
+]
+maintainers = [
+    { name = "B. Maurice Benson", email = "mbenson@polarisqb.com" },
+]
+
 dependencies = [
     # Machine learning
     "scikit-learn>=1.2,<1.6",
@@ -28,6 +51,10 @@ dependencies = [
     "huggingface_hub",
     "pip",
 ]
+
+[project.urls]
+Homepage = "https://polarisqb.com/"
+Repository = "https://github.com/pqb-mb/mi_entanglement_tdc"
 
 [project.optional-dependencies]
 gpu = [

@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+title: "MI-Entanglement: Quantum-Inspired Hamiltonian Feature Extraction for ADMET Prediction"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - family-names: Benson
+    given-names: B. Maurice
+    email: mbenson@polarisqb.com
+    affiliation: PolarisQB
+  - family-names: Byler
+    given-names: Kendall
+    affiliation: PolarisQB
+  - family-names: Petroff
+    given-names: Anna
+    affiliation: PolarisQB
+  - family-names: Keinan
+    given-names: Shahar
+    affiliation: PolarisQB
+  - family-names: Shipman
+    given-names: William J.
+    affiliation: PolarisQB
+repository-code: "https://github.com/pqb-mb/mi_entanglement_tdc"
+url: "https://polarisqb.com/"
+license: MIT
+version: 0.1.0
+date-released: 2025-02-19
+keywords:
+  - quantum-computing
+  - quantum-machine-learning
+  - drug-discovery
+  - ADMET
+  - molecular-property-prediction
+  - mutual-information
+  - cheminformatics
+preferred-citation:
+  type: article
+  title: "Quantum-Inspired Hamiltonian Feature Extraction for ADMET Prediction: A Simulation Study"
+  authors:
+    - family-names: Benson
+      given-names: B. Maurice
+    - family-names: Byler
+      given-names: Kendall
+    - family-names: Petroff
+      given-names: Anna
+    - family-names: Keinan
+      given-names: Shahar
+    - family-names: Shipman
+      given-names: William J.
+  year: 2026
+  journal: "arXiv preprint"
+  identifiers:
+    - type: other
+      value: "arXiv:2603.03109"
+      description: "arXiv identifier"
+  url: "https://arxiv.org/abs/2603.03109"
