@@ -19,6 +19,9 @@ from config import (
     CACHE_VERSION,
 )
 
+# Fake benchmark that maps to an unsupported metric, used to test error path
+ADMET_METRICS['_test_unsupported'] = 'nonexistent_metric'
+
 
 # ---------------------------------------------------------------------------
 # get_metric_fn
@@ -42,9 +45,20 @@ class TestGetMetricFn:
         assert fn([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) == 0.0
         assert fn([1.0, 2.0], [2.0, 3.0]) == 1.0
 
+    def test_spearman_benchmark(self):
+        fn, label = get_metric_fn('Half_Life_Obach')
+        assert label == 'Spearman'
+        assert callable(fn)
+        # Perfect positive correlation
+        assert fn([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) == 1.0
+
+    def test_spearman_vdss(self):
+        fn, label = get_metric_fn('VDss_Lombardo')
+        assert label == 'Spearman'
+
     def test_unsupported_raises(self):
         with pytest.raises(ValueError, match="Unsupported metric"):
-            get_metric_fn('Half_Life_Obach')  # 'spearman' — not yet supported
+            get_metric_fn('_test_unsupported')
 
     def test_case_insensitive(self):
         fn1, _ = get_metric_fn('CYP3A4_Substrate_CarbonMangels')
@@ -64,9 +78,15 @@ class TestGetMetricConfig:
         assert cfg['regression'] is True
         assert cfg['label'] == 'MAE'
 
+    def test_spearman_config(self):
+        cfg = get_metric_config('Half_Life_Obach')
+        assert cfg['higher_is_better'] is True
+        assert cfg['regression'] is True
+        assert cfg['label'] == 'Spearman'
+
     def test_unsupported_raises(self):
         with pytest.raises(ValueError, match="Unsupported metric"):
-            get_metric_config('Half_Life_Obach')
+            get_metric_config('_test_unsupported')
 
 
 # ---------------------------------------------------------------------------

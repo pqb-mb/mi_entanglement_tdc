@@ -11,6 +11,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Any, Callable, Dict, Optional, Tuple
 
+from scipy.stats import spearmanr
 from sklearn.metrics import roc_auc_score, average_precision_score, mean_absolute_error
 
 logger = logging.getLogger(__name__)
@@ -81,10 +82,16 @@ ADMET_METRICS: Dict[str, str] = {
 }
 
 
+def _spearman_score(y_true, y_pred):
+    """Spearman rank correlation (scalar)."""
+    return spearmanr(y_true, y_pred).correlation
+
+
 METRIC_CONFIG: Dict[str, Dict[str, Any]] = {
-    'roc-auc': {'fn': roc_auc_score, 'label': 'AUROC', 'higher_is_better': True, 'regression': False},
-    'pr-auc':  {'fn': average_precision_score, 'label': 'AUPRC', 'higher_is_better': True, 'regression': False},
-    'mae':     {'fn': mean_absolute_error, 'label': 'MAE', 'higher_is_better': False, 'regression': True},
+    'roc-auc':  {'fn': roc_auc_score, 'label': 'AUROC', 'higher_is_better': True, 'regression': False},
+    'pr-auc':   {'fn': average_precision_score, 'label': 'AUPRC', 'higher_is_better': True, 'regression': False},
+    'mae':      {'fn': mean_absolute_error, 'label': 'MAE', 'higher_is_better': False, 'regression': True},
+    'spearman': {'fn': _spearman_score, 'label': 'Spearman', 'higher_is_better': True, 'regression': True},
 }
 
 
